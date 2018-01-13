@@ -1,22 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_itoa_ull.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfulop <rfulop@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/30 02:50:51 by rfulop            #+#    #+#             */
-/*   Updated: 2017/11/01 18:06:51 by rfulop           ###   ########.fr       */
+/*   Created: 2015/10/24 19:56:07 by rfulop            #+#    #+#             */
+/*   Updated: 2017/03/16 02:22:52 by rfulop           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include "libft.h"
+static int		ft_size(unsigned long long int n)
+{
+	int a;
 
-# define BUFF_SIZE 1
+	a = 1;
+	while (n >= 10)
+	{
+		n = n / 10;
+		++a;
+	}
+	return (a);
+}
 
-int		get_next_line(const int fd, char **line);
+char			*ft_itoa_ull(unsigned long long int n)
+{
+	int		a;
+	char	*res;
 
-#endif
+	a = ft_size(n);
+	if (!(res = (char *)malloc(sizeof(char) * (a + 1))))
+		return (NULL);
+	res[a] = '\0';
+	while (a > 0)
+	{
+		res[a - 1] = n % 10 + '0';
+		n = n / 10;
+		--a;
+	}
+	return (res);
+}

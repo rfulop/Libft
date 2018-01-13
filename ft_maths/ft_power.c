@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfulop <rfulop@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/30 02:50:51 by rfulop            #+#    #+#             */
-/*   Updated: 2017/11/01 18:06:51 by rfulop           ###   ########.fr       */
+/*   Created: 2015/10/24 19:56:07 by rfulop            #+#    #+#             */
+/*   Updated: 2017/02/12 21:14:28 by rfulop           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include "libft.h"
-
-# define BUFF_SIZE 1
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+int	ft_power(unsigned long int nb, int pw)
+{
+	if (pw < 0)
+		return (0);
+	else if (!pw)
+		return (1);
+	else
+		nb = nb * ft_power(nb, pw - 1);
+	return (nb);
+}

@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_b.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfulop <rfulop@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/30 02:50:51 by rfulop            #+#    #+#             */
-/*   Updated: 2017/11/01 18:06:51 by rfulop           ###   ########.fr       */
+/*   Created: 2016/12/02 19:23:36 by rfulop            #+#    #+#             */
+/*   Updated: 2018/01/13 08:13:30 by rfulop           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "ft_printf.h"
 
-# include "libft.h"
+void	ft_b(va_list ap, t_opt *opt)
+{
+	char			*str;
+	unsigned int	b;
 
-# define BUFF_SIZE 1
-
-int		get_next_line(const int fd, char **line);
-
-#endif
+	b = va_arg(ap, unsigned int);
+	str = ft_convert_base(ft_itoa(b), DEC, BIN);
+	write(1, str, (int)ft_strlen(str));
+	opt->len += (int)ft_strlen(str);
+	free(str);
+}

@@ -1,22 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfulop <rfulop@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/30 02:50:51 by rfulop            #+#    #+#             */
-/*   Updated: 2017/11/01 18:06:51 by rfulop           ###   ########.fr       */
+/*   Created: 2015/10/16 14:16:37 by rfulop            #+#    #+#             */
+/*   Updated: 2016/06/05 22:17:08 by rfulop           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include "libft.h"
+static size_t	ft_size(char *str, size_t size)
+{
+	size_t a;
 
-# define BUFF_SIZE 1
+	a = 0;
+	while (a < size && str && str[a])
+		++a;
+	return (a);
+}
 
-int		get_next_line(const int fd, char **line);
+size_t			ft_strlcat(char *dest, const char *src, size_t n)
+{
+	size_t de;
+	size_t sr;
+	size_t len;
 
-#endif
+	de = ft_size(dest, n);
+	sr = ft_strlen(src);
+	len = n - de;
+	dest += de;
+	if (len > 0)
+	{
+		ft_strncpy(dest, src, len);
+		dest[len - 1] = '\0';
+	}
+	return (de + sr);
+}
